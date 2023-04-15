@@ -16,6 +16,7 @@ cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=avr-libc
 VERSION=${VERSION:-2.1.0}
+SRCNAM=avr-libc-2_1_0-release.tar.gz
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 PKGTYPE=${PKGTYPE:-tgz}
@@ -57,7 +58,8 @@ rm -rf $PKG
 mkdir -p $TMP $PKG $OUTPUT
 cd $TMP
 rm -rf $PRGNAM-$VERSION
-tar xvf $CWD/$PRGNAM-$VERSION.tar.bz2
+tar xvf $CWD/$SRCNAM || tar xvf $CWD/$PRGNAM-$SRCNAM
+
 if [ -d $PRGNAM-$PRGNAM-2_1_0-release ];
 then
 	mv $PRGNAM-$PRGNAM-2_1_0-release $PRGNAM-$VERSION
@@ -67,9 +69,8 @@ cd $PRGNAM-$VERSION
 # Add upstream patches for xmega3 (attiny1) support
 patch -p1 < $CWD/f4ec4b741bc608f0afc471734afa097e905fed9b.patch
 patch -p1 < $CWD/960a359d854001399b8fb445a9ad0ce3ea80f4d0.diff
-patch -p1 < $CWD/f9d60958a24ba04da542a4d3c9424b69d751b3c7.diff
+patch -p1 < $CWD/4d4628fa95191177465ad112048f2f993819de88.diff
 patch -p1 < $CWD/f445c5c96a11096f9aa36b475be51e20d7892492.diff
-
 
 chown -R root:root .
 find -L . \
