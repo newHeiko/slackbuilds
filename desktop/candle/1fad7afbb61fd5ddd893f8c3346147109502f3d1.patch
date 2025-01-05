@@ -1,0 +1,41 @@
+From 1fad7afbb61fd5ddd893f8c3346147109502f3d1 Mon Sep 17 00:00:00 2001
+From: Denvi <denis_vic@mail.ru>
+Date: Fri, 1 Nov 2019 22:35:15 +0500
+Subject: [PATCH] "Device", "Modification" windows adjustable now.
+
+---
+ src/candle.pro  | 10 ++--------
+ src/frmmain.cpp |  6 ++++--
+ 2 files changed, 6 insertions(+), 10 deletions(-)
+
+diff --git a/src/candle.pro b/src/candle.pro
+index 1bdec193..89836455 100644
+--- a/src/candle.pro
++++ b/src/candle.pro
+@@ -109,10 +109,4 @@ DEFINES += _USE_MATH_DEFINES
+ 
+ RESOURCES += \
+     shaders.qrc \
+-    images.qrc
+-
+-CONFIG(release, debug|release) {
+-    QMAKE_CXXFLAGS += -Z7 -Fdrelease\\candle.pdb
+-    QMAKE_CFLAGS += -Z7 -Fdrelease\\candle.pdb
+-    QMAKE_LFLAGS += /DEBUG /OPT:REF
+-}
+\ No newline at end of file
++    images.qrc
+\ No newline at end of file
+
+--- a/src/frmmain.h	2019-10-30 16:40:25.000000000 +0100
++++ b/src/frmmain.h	2025-01-05 17:51:39.566507572 +0100
+@@ -70,7 +70,7 @@
+ #define _GLIBCXX_USE_NOEXCEPT _NOEXCEPT
+ #endif
+ 
+-    const char* what() const override
++    const char* what() const throw()
+     {
+         return "Operation was cancelled by user";
+     }
+
